@@ -116,6 +116,9 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}
 
 add_library(tiff ${tiff_SOURCES} ${tiff_HEADERS} ${nodist_tiff_HEADERS}
             ${tiff_port_SOURCES} libtiff.def)
+set_target_properties(tiff PROPERTIES
+            OUTPUT_NAME "tiff"
+            PREFIX "lib")
 target_link_libraries(tiff ${TIFF_LIBRARY_DEPS})
 set_target_properties(tiff PROPERTIES SOVERSION ${SO_COMPATVERSION})
 if(NOT CYGWIN)
@@ -140,6 +143,9 @@ install(FILES ${tiff_HEADERS} ${nodist_tiff_HEADERS}
 
 if(cxx)
   add_library(tiffxx ${tiffxx_SOURCES} ${tiffxx_HEADERS})
+  set_target_properties(tiffxx PROPERTIES
+            OUTPUT_NAME "tiffxx"
+            PREFIX "lib")
   target_link_libraries(tiffxx tiff)
   set_target_properties(tiffxx PROPERTIES SOVERSION ${SO_COMPATVERSION})
   if(NOT CYGWIN)
